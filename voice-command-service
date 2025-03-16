@@ -1,0 +1,17 @@
+import { Component } from '@angular/core';
+import { VoiceCommandService } from './services/voice-command.service';
+
+@Component({
+  selector: 'app-root',
+  template: `<button (click)="startVoiceCommands()">Start Voice Commands</button>`,
+})
+export class AppComponent {
+  constructor(private voiceService: VoiceCommandService) {}
+
+  startVoiceCommands() {
+    this.voiceService.startListening({
+      'hello': () => alert('Hello detected!'),
+      'open settings': () => console.log('Opening settings...'),
+    });
+  }
+}
